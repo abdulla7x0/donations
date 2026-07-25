@@ -763,7 +763,6 @@
     <section class="stats-grid" id="statsGrid">
       <div class="stat-card"><div class="number" data-target="234540">₹0</div><div class="label">💰 Total Raised</div></div>
       <div class="stat-card"><div class="number" data-target="842">0</div><div class="label">👥 Donors</div></div>
-      <div class="stat-card"><div class="number" data-target="5360">0</div><div class="label">🍛 Meals Served</div></div>
     </section>
 
     <!-- ========== PROGRESS ========== -->
@@ -1054,10 +1053,9 @@
 
       function updateStatCards() {
         const cards = document.querySelectorAll('#statsGrid .stat-card .number');
-        if (cards.length >= 3) {
+        if (cards.length >= 2) {
           cards[0].textContent = '₹' + appState.totalRaised.toLocaleString('en-IN');
           cards[1].textContent = appState.donors.toLocaleString('en-IN');
-          cards[2].textContent = appState.mealsServed.toLocaleString('en-IN');
         }
       }
 
