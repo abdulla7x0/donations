@@ -755,7 +755,6 @@
       <div class="nav-links">
         <a href="#">Campaign</a>
         <a href="#">Transparency</a>
-        <a href="#">Updates</a>
         <a href="#">Gallery</a>
       </div>
     </nav>
@@ -825,14 +824,6 @@
             <!-- filled by JS -->
           </tbody>
         </table>
-      </div>
-    </div>
-
-    <!-- ========== UPDATES ========== -->
-    <div class="mt-2" id="updatesSection">
-      <h3 class="text-gold" style="margin-bottom:1rem;"><i class="fas fa-newspaper"></i> Campaign Updates</h3>
-      <div class="updates-grid" id="updatesGrid">
-        <!-- filled by JS -->
       </div>
     </div>
 
@@ -1042,12 +1033,13 @@
 
       function renderUpdates() {
         const container = document.getElementById('updatesGrid');
-        if (!container) return;
+        const sec = document.getElementById('updatesSection');
+        if (!container || !sec) return;
         if (!appState.updates || appState.updates.length === 0) {
-          document.getElementById('updatesSection').style.display = 'none';
+          sec.style.display = 'none';
           return;
         }
-        document.getElementById('updatesSection').style.display = 'block';
+        sec.style.display = 'block';
         container.innerHTML = appState.updates.map(u => `
           <div class="update-card" style="padding:1.25rem; background:#151518; border-radius:16px; border:1px solid rgba(255,255,255,0.06);">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
