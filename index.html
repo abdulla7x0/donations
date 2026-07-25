@@ -745,8 +745,12 @@
       text-align: center;
     }
     @keyframes roll360 {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .roller-track {
+      will-change: transform;
+      backface-visibility: hidden;
     }
   </style>
 </head>
@@ -821,7 +825,7 @@
         <i class="fas fa-heart" style="color: #EF4444;"></i> Special Thanks
       </h3>
       <div style="overflow: hidden; white-space: nowrap; position: relative; width: 100%;">
-        <div style="display: inline-flex; gap: 1.25rem; animation: roll360 16s linear infinite;">
+        <div class="roller-track" style="display: inline-flex; gap: 1.25rem; animation: roll360 18s linear infinite;">
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
             <span style="color: #FBBF24;">🌟</span> Shahid Nawab
           </div>
@@ -1001,7 +1005,11 @@
       }
 
       // ---------- LIGHTWEIGHT CELEBRATION CONFETTI BLAST 🎉 ----------
+      let confettiFired = false;
       function triggerConfetti(element) {
+        if (confettiFired) return;
+        confettiFired = true;
+
         const canvas = document.createElement('canvas');
         canvas.style.position = 'fixed';
         canvas.style.inset = '0';
@@ -1012,8 +1020,8 @@
         document.body.appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = Math.min(window.innerWidth, 800);
+        canvas.height = Math.min(window.innerHeight, 800);
 
         let originX = canvas.width / 2;
         let originY = canvas.height / 3;
@@ -1023,30 +1031,25 @@
           originY = rect.top + rect.height / 2;
         }
 
-        const colors = ['#FBBF24', '#F59E0B', '#EF4444', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#FFFFFF'];
+        const colors = ['#FBBF24', '#F59E0B', '#EF4444', '#10B981', '#3B82F6', '#FFFFFF'];
         const particles = [];
-        const particleCount = 60;
+        const particleCount = 25;
 
         for (let i = 0; i < particleCount; i++) {
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 9 + 4;
+          const speed = Math.random() * 6 + 3;
           particles.push({
             x: originX,
             y: originY,
             vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed - 4,
+            vy: Math.sin(angle) * speed - 3,
             color: colors[Math.floor(Math.random() * colors.length)],
-            size: Math.random() * 8 + 4,
-            rotation: Math.random() * Math.PI,
-            vRot: (Math.random() - 0.5) * 0.25,
-            opacity: 1,
-            shape: Math.random() > 0.4 ? 'circle' : 'rect'
+            size: Math.random() * 6 + 4,
+            opacity: 1
           });
         }
 
-        let animationFrame;
         let startTime = null;
-
         function render(timestamp) {
           if (!startTime) startTime = timestamp;
           const elapsed = timestamp - startTime;
@@ -1056,32 +1059,20 @@
           particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
-            p.vy += 0.25;
-            p.rotation += p.vRot;
-            p.opacity -= 0.015;
+            p.vy += 0.3;
+            p.opacity -= 0.025;
 
             if (p.opacity > 0) {
               activeParticles++;
-              ctx.save();
               ctx.globalAlpha = Math.max(0, p.opacity);
-              ctx.translate(p.x, p.y);
-              ctx.rotate(p.rotation);
               ctx.fillStyle = p.color;
-              if (p.shape === 'circle') {
-                ctx.beginPath();
-                ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
-                ctx.fill();
-              } else {
-                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-              }
-              ctx.restore();
+              ctx.fillRect(p.x, p.y, p.size, p.size);
             }
           });
 
-          if (activeParticles > 0 && elapsed < 3000) {
-            animationFrame = requestAnimationFrame(render);
+          if (activeParticles > 0 && elapsed < 1500) {
+            requestAnimationFrame(render);
           } else {
-            cancelAnimationFrame(animationFrame);
             if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
           }
         }
@@ -1311,7 +1302,7 @@
       loadInitialState();
       renderUI(true); // Animate count loader on page load
       fetchSheetsData();
-      setInterval(fetchSheetsData, 5000); // Poll every 5s for live Google Sheets updates
+      setInterval(fetchSheetsData, 30000); // Poll every 30s for live Google Sheets updates
 
       window.addEventListener('storage', (e) => {
         if (e.key === 'feedhope_admin_data') {
