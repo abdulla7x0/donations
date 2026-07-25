@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+  <title>Feed Hope · Student Food Donation</title>
+  <!-- Google Fonts: Space Grotesk + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0B0B0D;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 1rem 4rem;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+    a {
+      color: #FBBF24;
+      text-decoration: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* ---------- GLASS & CARDS ---------- */
+    .glass {
+      background: rgba(21, 21, 24, 0.70);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.7);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .glass:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 50px -14px rgba(0, 0, 0, 0.9);
+    }
+    .card {
+      background: #151518;
+      border-radius: 20px;
+      padding: 1.5rem 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(251, 191, 36, 0.2);
+    }
+
+    /* ---------- TYPOGRAPHY ---------- */
+    h1, h2, h3, .heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .text-gold {
+      color: #FBBF24;
+    }
+    .text-gray {
+      color: #9CA3AF;
+    }
+    .text-sm {
+      font-size: 0.9rem;
+    }
+    .text-xs {
+      font-size: 0.75rem;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #FBBF24, #f59e0b);
+      color: #0B0B0D;
+      box-shadow: 0 8px 24px rgba(251, 191, 36, 0.25);
+    }
+    .btn-gold:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 32px rgba(251, 191, 36, 0.4);
+    }
+    .btn-dark {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-dark:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .btn-sm {
+      padding: 0.4rem 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #d1d5db;
+      transition: color 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #FBBF24;
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      color: #FBBF24;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 3rem 0 4rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #9CA3AF;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .qr-card {
+      background: rgba(21, 21, 24, 0.75);
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .qr-card .qr-placeholder {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 1rem;
+      background: #1a1a1e;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #FBBF2466;
+      position: relative;
+      overflow: hidden;
+    }
+    .qr-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #151518;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(251, 191, 36, 0.4) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .upi-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      font-size: 1.6rem;
+      color: #9CA3AF;
+      margin: 0.5rem 0;
+    }
+    .trust-badge {
+      font-size: 0.75rem;
+      color: #6b7280;
+      letter-spacing: 0.5px;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- STATS ---------- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .stat-card {
+      padding: 1.5rem;
+      text-align: center;
+      background: rgba(21, 21, 24, 0.5);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.25s;
+    }
+    .stat-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(251, 191, 36, 0.15);
+    }
+    .stat-card .number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #FBBF24;
+    }
+    .stat-card .label {
+      color: #9CA3AF;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    /* ---------- PROGRESS ---------- */
+    .progress-wrap {
+      background: #1f1f23;
+      border-radius: 60px;
+      height: 18px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #FBBF24, #EF4444);
+      border-radius: 60px;
+      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .progress-stats {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: rgba(21, 21, 24, 0.4);
+      border-radius: 14px;
+      border-left: 3px solid #FBBF24;
+    }
+    .timeline-item .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #2a2a30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #FBBF24;
+      flex-shrink: 0;
+    }
+    .timeline-item .info {
+      flex: 1;
+    }
+    .timeline-item .info .name {
+      font-weight: 600;
+    }
+    .timeline-item .info .msg {
+      color: #9CA3AF;
+      font-size: 0.85rem;
+    }
+    .timeline-item .amount {
+      font-weight: 700;
+      color: #FBBF24;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .timeline-item .time {
+      font-size: 0.7rem;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+
+    /* ---------- TRANSPARENCY DASHBOARD ---------- */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .pie-placeholder {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: conic-gradient(#FBBF24 0% 70%, #EF4444 70% 95%, #22C55E 95% 100%);
+      box-shadow: 0 0 40px rgba(251, 191, 36, 0.1);
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .kpi-card {
+      background: #151518;
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: center;
+    }
+    .kpi-card .kpi-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FBBF24;
+    }
+
+    /* ---------- EXPENSE TABLE ---------- */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      text-align: left;
+      padding: 0.75rem 0.5rem;
+      color: #9CA3AF;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    td {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: rgba(34, 197, 94, 0.15);
+      color: #22C55E;
+    }
+    .badge-pending {
+      background: rgba(251, 191, 36, 0.15);
+      color: #FBBF24;
+    }
+    .badge-verified {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22C55E;
+    }
+
+    /* ---------- UPDATES / GALLERY ---------- */
+    .updates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .update-card {
+      background: #151518;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: 0.25s;
+    }
+    .update-card:hover {
+      transform: scale(1.01);
+      border-color: #FBBF2433;
+    }
+    .update-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .update-card .body {
+      padding: 1rem 1.25rem;
+    }
+    .update-card .body h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 0.25rem;
+    }
+    .update-card .body p {
+      color: #9CA3AF;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .testimonial {
+      background: rgba(21, 21, 24, 0.5);
+      padding: 1.5rem;
+      border-radius: 20px;
+      border-left: 4px solid #FBBF24;
+      font-style: italic;
+    }
+    .testimonial .author {
+      font-style: normal;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #FBBF24;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0.8rem 0;
+      cursor: pointer;
+    }
+    .faq-item .question {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .faq-item .answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s ease;
+      color: #9CA3AF;
+    }
+    .faq-item.open .answer {
+      max-height: 160px;
+      padding-top: 0.6rem;
+    }
+    .faq-item .icon {
+      transition: transform 0.3s;
+    }
+    .faq-item.open .icon {
+      transform: rotate(180deg);
+    }
+
+    /* ---------- FLOATING DONATE (mobile) ---------- */
+    .floating-donate {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #FBBF24, #f59e0b);
+      color: #0B0B0D;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 12px 40px rgba(251, 191, 36, 0.4);
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 999;
+      border: none;
+      cursor: pointer;
+    }
+    .floating-donate i {
+      font-size: 1.3rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      color: #9CA3AF;
+      font-size: 0.9rem;
+    }
+    footer .socials {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.2rem;
+    }
+    footer .socials a {
+      color: #9CA3AF;
+      transition: color 0.2s;
+    }
+    footer .socials a:hover {
+      color: #FBBF24;
+    }
+
+    /* ---------- ADMIN DASHBOARD ---------- */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .admin-sidebar {
+      background: #151518;
+      border-radius: 20px;
+      padding: 1.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      height: fit-content;
+    }
+    .admin-sidebar a {
+      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      color: #9CA3AF;
+      transition: 0.2s;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .admin-sidebar a:hover,
+    .admin-sidebar a.active {
+      background: rgba(251, 191, 36, 0.08);
+      color: #FBBF24;
+    }
+    .admin-sidebar i {
+      width: 24px;
+    }
+    .admin-content {
+      background: #151518;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .admin-stat {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      text-align: center;
+    }
+    .admin-stat .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #FBBF24;
+    }
+
+    /* ---------- RESPONSIVE MOBILE EXCELLENCE ---------- */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .kpi-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 0.5rem 5rem;
+      }
+      .container {
+        padding: 0.5rem 0;
+      }
+      nav {
+        padding: 0.8rem 0.5rem;
+      }
+      .hero {
+        padding: 1.5rem 0 2.5rem;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 7.5vw, 3.2rem);
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .qr-card {
+        padding: 1.5rem 1rem;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      .stat-card {
+        padding: 1rem 0.75rem;
+      }
+      .stat-card .number {
+        font-size: 1.7rem;
+      }
+      .card {
+        padding: 1.25rem 1rem;
+      }
+      .kpi-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .kpi-card {
+        padding: 0.6rem;
+      }
+      .kpi-card .kpi-value {
+        font-size: 1.1rem;
+      }
+      .timeline-item {
+        padding: 0.6rem 0.8rem;
+        gap: 0.6rem;
+      }
+      .timeline-item .avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+      }
+      .floating-donate {
+        display: flex;
+        animation: pulseGlow 2s infinite;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .kpi-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); }
+      50% { box-shadow: 0 12px 35px rgba(251, 191, 36, 0.7); }
+      100% { box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); }
+    }
+    /* utilities */
+    .mt-2 {
+      margin-top: 2rem;
+    }
+    .mb-1 {
+      margin-bottom: 0.75rem;
+    }
+    .flex {
+      display: flex;
+    }
+    .gap-1 {
+      gap: 0.75rem;
+    }
+    .items-center {
+      align-items: center;
+    }
+    .justify-between {
+      justify-content: space-between;
+    }
+    .w-full {
+      width: 100%;
+    }
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ========== NAV ========== -->
+    <nav>
+      <div class="logo">Feed<span>Hope</span></div>
+      <div class="nav-links">
+        <a href="#">Campaign</a>
+        <a href="#">Transparency</a>
+        <a href="#">Updates</a>
+        <a href="#">Gallery</a>
+        <!-- /<a href="admin.html" class="btn btn-dark btn-sm" style="padding:0.35rem 0.9rem;"><i class="fas fa-user-shield"></i> Admin</a> -->
+        <a href="javascript:void(0)" onclick="donateNow()" class="btn btn-gold btn-sm">Donate</a>
+      </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div>
+        <h1>Feed Hope.<br />Every Rupee Counts.</h1>
+        <p>Help provide food and drinking water. Every donation is publicly tracked with complete transparency.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-gold" onclick="donateNow()"><i class="fas fa-heart"></i> Donate Now</button>
+          <button class="btn btn-dark">View Transparency</button>
+        </div>
+      </div>
+      <div>
+        <div class="qr-card">
+          <div class="qr-placeholder">
+            <img id="qrDisplay" src="qr.jpeg" alt="Donation QR Code" />
+          </div>
+          <div style="margin: 0.5rem 0; font-weight: 600; color: #FBBF24; font-size: 0.9rem;">
+            💳 UPI ID: <span style="background: rgba(251, 191, 36, 0.15); padding: 0.25rem 0.6rem; border-radius: 8px; border: 1px dashed #FBBF24; user-select: all;">tahamilkhan09@ibl</span>
+          </div>
+          <div class="upi-icons">
+            <i class="fas fa-phone"></i> PhonePe
+            <i class="fab fa-google-pay"></i> GPay
+            <i class="fas fa-mobile-alt"></i> Paytm
+          </div>
+          <div class="trust-badge">🔒 Trusted • Public Ledger • Verified Expenses</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="stats-grid" id="statsGrid">
+      <div class="stat-card"><div class="number" data-target="234540">₹0</div><div class="label">💰 Total Raised</div></div>
+      <div class="stat-card"><div class="number" data-target="500000">₹0</div><div class="label">🎯 Goal</div></div>
+      <div class="stat-card"><div class="number" data-target="842">0</div><div class="label">👥 Donors</div></div>
+      <div class="stat-card"><div class="number" data-target="5360">0</div><div class="label">🍛 Meals Served</div></div>
+    </section>
+
+    <!-- ========== PROGRESS ========== -->
+    <div class="card">4
+      <div class="progress-stats">
+        <span>Raised: <strong id="raisedDisplay">₹0</strong></span>
+        <span>Goal: <strong id="goalDisplay">₹5,00,000</strong></span>
+        <span>Remaining: <strong id="remainingDisplay">₹5,00,000</strong></span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+      </div>
+      <div class="text-center text-gray text-sm" id="progressPercent">0% funded</div>
+    </div>
+
+    <!-- ========== 3 IMAGES SHOWCASE (FULL DISPLAY) ========== -->
+    <div class="card mt-2 mb-1" style="padding: 1.25rem;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
+          <img src="1.jpeg" alt="Campaign Image 1" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
+          <img src="2.jpeg" alt="Campaign Image 2" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
+          <img src="3.jpeg" alt="Campaign Image 3" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== TIMELINE + TRANSPARENCY DASHBOARD ========== -->
+    <div class="dashboard-grid">
+      <!-- LEFT: TIMELINE -->
+      <div class="card">
+        <h3><i class="fas fa-clock text-gold"></i> Recent Donations</h3>
+        <div class="timeline" id="timeline">
+          <!-- filled by JS -->
+        </div>
+      </div>
+      <!-- RIGHT: TRANSPARENCY -->
+      <div class="card">
+        <h3 class="text-gold">🔍 Transparency Dashboard</h3>
+        <div class="pie-placeholder"></div>
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-value" id="kpiCollected">₹0</div><div class="text-gray text-sm">Collected</div></div>
+          <div class="kpi-card"><div class="kpi-value" id="kpiSpent">₹0</div><div class="text-gray text-sm">Spent</div></div>
+          <div class="kpi-card"><div class="kpi-value" id="kpiBalance">₹0</div><div class="text-gray text-sm">Balance</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== EXPENSE LEDGER ========== -->
+    <div class="card mt-2">
+      <h3 class="text-gold"><i class="fas fa-receipt"></i> Expense Ledger</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Purpose</th><th>Amount</th><th>Receipt</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody id="expenseTable">
+            <!-- filled by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ========== UPDATES ========== -->
+    <div class="mt-2" id="updatesSection">
+      <h3 class="text-gold" style="margin-bottom:1rem;"><i class="fas fa-newspaper"></i> Campaign Updates</h3>
+      <div class="updates-grid" id="updatesGrid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div>
+        <strong class="logo" style="font-size:1.2rem;">Feed<span>Hope</span></strong>
+        <div style="margin-top:0.3rem;">© 2025 · Student Food Donation</div>
+      </div>
+      <div>
+        <a href="admin.html" style="color:#9CA3AF; font-size:0.85rem; text-decoration:none;"><i class="fas fa-lock text-gold"></i> Admin Portal</a>
+      </div>
+    </footer>
+
+    <!-- ========== FLOATING DONATE BUTTON (mobile) ========== -->
+    <button class="floating-donate" onclick="donateNow()"><i class="fas fa-heart"></i> Donate Now</button>
+
+  </div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ---------- GOOGLE SHEETS BACKEND API URL ----------
+      const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbxD0DKNhgJP_zuM6sPgXY21MUFPVoASx1QRvekXjDpYDpn_jVpU5E1VsY7EhQdL1scUYg/exec"; 
+
+      const DEFAULT_DONATIONS = [];
+      const DEFAULT_EXPENSES = [];
+      const DEFAULT_UPDATES = [];
+
+      let appState = {
+        totalRaised: 0,
+        goal: 500000,
+        donors: 0,
+        mealsServed: 0,
+        donations: [],
+        expenses: [],
+        updates: []
+      };
+
+      function getSheetsUrl() {
+        try {
+          const saved = localStorage.getItem('feedhope_admin_data');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (parsed.sheetsUrl && parsed.sheetsUrl.trim()) {
+              return parsed.sheetsUrl.trim();
+            }
+          }
+        } catch(e) {}
+        return GOOGLE_SHEETS_API_URL;
+      }
+
+      function recalculateTotals() {
+        appState.totalRaised = appState.donations.reduce((sum, d) => sum + (Number(d.amount) || 0), 0);
+        appState.donors = appState.donations.length;
+        if (!appState.mealsServed || appState.mealsServed < 5000) {
+          appState.mealsServed = Math.floor(appState.totalRaised / 40);
+        }
+      }
+
+      function loadInitialState() {
+        try {
+          const saved = localStorage.getItem('feedhope_admin_data');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (parsed.goal) appState.goal = Number(parsed.goal);
+            if (parsed.mealsServed !== undefined) appState.mealsServed = Number(parsed.mealsServed);
+            if (Array.isArray(parsed.donations)) appState.donations = parsed.donations;
+            if (Array.isArray(parsed.expenses)) appState.expenses = parsed.expenses;
+            if (Array.isArray(parsed.updates)) appState.updates = parsed.updates;
+          }
+        } catch(e) {}
+        
+        recalculateTotals();
+      }
+
+      function saveLocalState() {
+        try {
+          const stateToSave = {
+            goal: appState.goal,
+            mealsServed: appState.mealsServed,
+            sheetsUrl: getSheetsUrl(),
+            donations: appState.donations,
+            expenses: appState.expenses,
+            updates: appState.updates
+          };
+          localStorage.setItem('feedhope_admin_data', JSON.stringify(stateToSave));
+        } catch(e) {}
+      }
+
+      // ---------- FETCH REAL LIVE DATA FROM GOOGLE SHEETS ----------
+      async function fetchSheetsData() {
+        const apiUrl = getSheetsUrl();
+        if (!apiUrl) return;
+
+        try {
+          const res = await fetch(apiUrl + (apiUrl.includes('?') ? '&' : '?') + 'cacheBust=' + Date.now());
+          const data = await res.json();
+          if (data && data.status === 'success') {
+            if (data.goal !== undefined && Number(data.goal) > 0) appState.goal = Number(data.goal);
+            if (data.mealsServed !== undefined) appState.mealsServed = Number(data.mealsServed);
+
+            if (Array.isArray(data.donations)) {
+              appState.donations = data.donations;
+            }
+            if (Array.isArray(data.expenses)) {
+              appState.expenses = data.expenses;
+            }
+
+            recalculateTotals();
+            saveLocalState();
+            renderUI();
+          }
+        } catch (err) {
+          console.warn('Google Sheets API notice:', err);
+        }
+      }
+
+      function sendDonationToSheets(donation) {
+        const apiUrl = getSheetsUrl();
+        if (!apiUrl) return;
+
+        const reqId = Date.now() + '_' + Math.floor(Math.random() * 100000);
+        const params = `action=addDonation&reqId=${reqId}&name=${encodeURIComponent(donation.name)}&amount=${donation.amount}&msg=${encodeURIComponent(donation.msg || '')}&time=${encodeURIComponent(donation.time || '')}&avatar=${encodeURIComponent(donation.avatar || '')}`;
+        const addUrl = apiUrl + (apiUrl.includes('?') ? '&' : '?') + params;
+
+        fetch(addUrl, { mode: 'no-cors' }).catch(e => console.warn(e));
+      }
+
+      // ---------- RENDER UI ----------
+      function renderUI() {
+        renderTimeline();
+        renderExpenses();
+        renderUpdates();
+        updateProgress();
+        updateStatCards();
+      }
+
+      function renderTimeline() {
+        const container = document.getElementById('timeline');
+        if (!container) return;
+        if (!appState.donations || appState.donations.length === 0) {
+          container.innerHTML = '<div style="padding:1.5rem 1rem; text-align:center; color:#9CA3AF; font-size:0.9rem;">No recent donations yet. Be the first to support! ❤️</div>';
+          return;
+        }
+        container.innerHTML = appState.donations.map(d => {
+          let displayTime = d.time || 'recently';
+          if (String(displayTime).includes('1899') || String(displayTime).includes('T')) {
+            displayTime = 'recently';
+          }
+          const donorName = d.name || 'Anonymous';
+          const avatarChar = d.avatar || (donorName !== 'Anonymous' ? String(donorName).charAt(0).toUpperCase() : '?');
+
+          return `
+            <div class="timeline-item">
+              <div class="avatar">${avatarChar}</div>
+              <div class="info">
+                <div class="name">${donorName}</div>
+                <div class="msg">${d.msg || '❤️ Supporter'}</div>
+              </div>
+              <div class="amount">₹${Number(d.amount || 0).toLocaleString('en-IN')}</div>
+              <div class="time">${displayTime}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderExpenses() {
+        const container = document.getElementById('expenseTable');
+        if (!container) return;
+        if (!appState.expenses || appState.expenses.length === 0) {
+          container.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#9CA3AF; padding:1.5rem;">No expenses recorded yet.</td></tr>';
+          return;
+        }
+        container.innerHTML = appState.expenses.map(e => `
+          <tr>
+            <td><strong>${e.purpose}</strong></td>
+            <td style="color:#EF4444; font-weight:700;">₹${Number(e.amount || 0).toLocaleString('en-IN')}</td>
+            <td><a href="${e.receipt || '#'}" target="_blank" style="color:#FBBF24;">📎 View</a></td>
+            <td style="color:#9CA3AF;">${e.date || ''}</td>
+            <td><span class="badge ${e.status === 'Verified' ? 'badge-verified' : 'badge-pending'}">${e.status === 'Verified' ? '✅ Verified' : '⏳ Pending'}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      function renderUpdates() {
+        const container = document.getElementById('updatesGrid');
+        if (!container) return;
+        if (!appState.updates || appState.updates.length === 0) {
+          document.getElementById('updatesSection').style.display = 'none';
+          return;
+        }
+        document.getElementById('updatesSection').style.display = 'block';
+        container.innerHTML = appState.updates.map(u => `
+          <div class="update-card" style="padding:1.25rem; background:#151518; border-radius:16px; border:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <h4 style="color:#fff;">${u.title}</h4>
+              <span class="badge badge-pending">${u.tag || 'General'}</span>
+            </div>
+            <p style="color:#9CA3AF; font-size:0.9rem; margin-bottom:0.75rem;">${u.desc}</p>
+            <span class="text-gray text-xs">📅 ${u.date}</span>
+          </div>
+        `).join('');
+      }
+
+      function updateStatCards() {
+        const cards = document.querySelectorAll('#statsGrid .stat-card .number');
+        if (cards.length >= 4) {
+          cards[0].textContent = '₹' + appState.totalRaised.toLocaleString('en-IN');
+          cards[1].textContent = '₹' + appState.goal.toLocaleString('en-IN');
+          cards[2].textContent = appState.donors.toLocaleString('en-IN');
+          cards[3].textContent = appState.mealsServed.toLocaleString('en-IN');
+        }
+      }
+
+      function updateProgress() {
+        const fill = document.getElementById('progressFill');
+        const pct = document.getElementById('progressPercent');
+        const raised = document.getElementById('raisedDisplay');
+        const goalEl = document.getElementById('goalDisplay');
+        const remaining = document.getElementById('remainingDisplay');
+
+        const raisedVal = appState.totalRaised;
+        const goal = appState.goal;
+        const rem = Math.max(0, goal - raisedVal);
+        const percent = Math.min(100, goal > 0 ? (raisedVal / goal) * 100 : 0);
+
+        if (fill) fill.style.width = percent.toFixed(1) + '%';
+        if (pct) pct.textContent = percent.toFixed(1) + '% funded';
+        if (raised) raised.textContent = '₹' + raisedVal.toLocaleString('en-IN');
+        if (goalEl) goalEl.textContent = '₹' + goal.toLocaleString('en-IN');
+        if (remaining) remaining.textContent = '₹' + rem.toLocaleString('en-IN');
+
+        const totalSpent = appState.expenses.reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
+        const balance = raisedVal - totalSpent;
+
+        const kpiCollected = document.getElementById('kpiCollected');
+        const kpiSpent = document.getElementById('kpiSpent');
+        const kpiBalance = document.getElementById('kpiBalance');
+
+        if (kpiCollected) kpiCollected.textContent = '₹' + raisedVal.toLocaleString('en-IN');
+        if (kpiSpent) kpiSpent.textContent = '₹' + totalSpent.toLocaleString('en-IN');
+        if (kpiBalance) kpiBalance.textContent = '₹' + balance.toLocaleString('en-IN');
+      }
+
+      window.donateNow = async function() {
+        const upiId = "tahamilkhan09@ibl";
+        const name = prompt('Enter your name (or leave blank for Anonymous):') || 'Anonymous';
+        const amountStr = prompt('Enter donation amount (₹):', '500');
+        const amount = parseInt(amountStr, 10);
+        
+        if (isNaN(amount) || amount <= 0) {
+          alert('Please enter a valid donation amount.');
+          return;
+        }
+
+        const msg = prompt('Enter a message of support:', 'Food Donation ❤️') || 'Food Donation ❤️';
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent('Feed Hope')}&am=${amount}&cu=INR&tn=${encodeURIComponent(msg)}`;
+
+        window.location.href = upiUrl;
+
+        const newDonation = {
+          name: name.trim() || 'Anonymous',
+          amount: amount,
+          time: 'just now',
+          msg: msg,
+          avatar: (name.trim() && name.trim() !== 'Anonymous') ? name.trim().charAt(0).toUpperCase() : '?'
+        };
+
+        appState.donations.unshift(newDonation);
+        recalculateTotals();
+        saveLocalState();
+        renderUI();
+
+        sendDonationToSheets(newDonation);
+        setTimeout(fetchSheetsData, 1200);
+      };
+
+      // ---------- INIT ----------
+      loadInitialState();
+      renderUI();
+      fetchSheetsData();
+      setInterval(fetchSheetsData, 5000); // Poll every 5s for live Google Sheets updates
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'feedhope_admin_data') {
+          loadInitialState();
+          renderUI();
+        }
+      });
+
+      function checkMobile() {
+        const btn = document.querySelector('.floating-donate');
+        if (!btn) return;
+        if (window.innerWidth < 768) {
+          btn.style.display = 'flex';
+        } else {
+          btn.style.display = 'none';
+        }
+      }
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+
+      console.log('🚀 Feed Hope Public Page ready.');
+    })();
+  </script>
+</body>
+</html>
