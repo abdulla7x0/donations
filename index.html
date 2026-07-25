@@ -744,6 +744,10 @@
     .text-center {
       text-align: center;
     }
+    @keyframes roll360 {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body>
@@ -751,85 +755,99 @@
 
     <!-- ========== NAV ========== -->
     <nav>
-      <div class="logo">cjpfoodfund<span>gurramkonda</span></div>
+      <div class="logo">cjp food fund <span>gurramkonda</span></div>
     </nav>
 
     <!-- ========== HERO WITH GURRAMKONDA FORT BACKGROUND ========== -->
-    <section class="hero-bg-section" style="position: relative; border-radius: 24px; overflow: hidden; padding: 4.5rem 2rem; margin: 1.5rem 0 2.5rem; background: linear-gradient(180deg, rgba(11, 11, 13, 0.45) 0%, rgba(11, 11, 13, 0.95) 100%), url('gurramkonda_fort.jpg') center/cover no-repeat; border: 1px solid rgba(251, 191, 36, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.7); text-align: center;">
-      <div style="max-width: 750px; margin: 0 auto;">
-        <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
-          cjpfoodfund<span style="color: #FBBF24;">gurramkonda</span>
-        </h1>
-        <p style="font-size: 1.15rem; color: #E5E7EB; text-shadow: 0 2px 10px rgba(0,0,0,0.9); margin: 0 auto; max-width: 580px;">
-          Student Food & Relief Fund • Gurramkonda Fort Region
-        </p>
-      </div>
+    <section class="hero-bg-section" style="position: relative; border-radius: 24px; overflow: hidden; min-height: 280px; margin: 1.5rem 0 2.5rem; background: url('gurramkonda_fort.jpg') center/cover no-repeat; border: 1px solid rgba(251, 191, 36, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.7);">
     </section>
 
     <!-- ========== STATS ========== -->
     <section class="stats-grid" id="statsGrid">
-      <div class="stat-card"><div class="number" data-target="234540">₹0</div><div class="label">💰 Total Raised</div></div>
-      <div class="stat-card"><div class="number" data-target="842">0</div><div class="label">👥 Donors</div></div>
+      <div class="stat-card"><div class="number" data-target="6380">₹0</div><div class="label">💰 Total Raised</div></div>
+      <div class="stat-card"><div class="number" data-target="35">0</div><div class="label">👥 Donors</div></div>
     </section>
 
     <!-- ========== PROGRESS ========== -->
     <div class="card">
       <div class="progress-stats">
-        <span>Raised: <strong id="raisedDisplay">₹0</strong></span>
-        <span>Remaining: <strong id="remainingDisplay">₹5,00,000</strong></span>
+        <span>Raised: <strong id="raisedDisplay">₹6,380</strong></span>
       </div>
       <div class="progress-wrap">
         <div class="progress-fill" id="progressFill" style="width:0%;"></div>
       </div>
-      <div class="text-center text-gray text-sm" id="progressPercent">0% funded</div>
-    </div>
-
-    <!-- ========== 3 IMAGES SHOWCASE (FULL DISPLAY) ========== -->
-    <div class="card mt-2 mb-1" style="padding: 1.25rem;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
-        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
-          <img src="1.jpeg" alt="Campaign Image 1" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
-          <img src="2.jpeg" alt="Campaign Image 2" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; height: 260px;">
-          <img src="3.jpeg" alt="Campaign Image 3" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-      </div>
+      <div class="text-center text-gray text-sm" id="progressPercent">100% funded</div>
     </div>
 
     <!-- ========== TIMELINE + TRANSPARENCY DASHBOARD ========== -->
     <div class="dashboard-grid">
       <!-- LEFT: TIMELINE -->
       <div class="card">
-        <h3><i class="fas fa-clock text-gold"></i> Recent Donations</h3>
+        <h3><i class="fas fa-clock text-gold"></i>  Donations</h3>
+        <h5>names are hiden due to privacy </h5>
         <div class="timeline" id="timeline">
           <!-- filled by JS -->
         </div>
       </div>
-      <!-- RIGHT: TRANSPARENCY -->
+      <!-- RIGHT: PROOF -->
       <div class="card">
-        <h3 class="text-gold">🔍 Transparency Dashboard</h3>
-        <div class="pie-placeholder"></div>
-        <div class="kpi-row">
-          <div class="kpi-card"><div class="kpi-value" id="kpiCollected">₹0</div><div class="text-gray text-sm">Collected</div></div>
-          <div class="kpi-card"><div class="kpi-value" id="kpiSpent">₹0</div><div class="text-gray text-sm">Spent</div></div>
-          <div class="kpi-card"><div class="kpi-value" id="kpiBalance">₹0</div><div class="text-gray text-sm">Balance</div></div>
+        <h3 class="text-gold" style="margin-bottom: 1rem;"><i class="fas fa-file-invoice"></i> Proof of Spent</h3>
+        <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(251, 191, 36, 0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+          <img src="proof.jpeg" alt="Proof of Relief" style="width: 100%; height: auto; display: block; object-fit: contain;" />
+        </div>
+
+        <!-- VIDEO PLACEHOLDER -->
+        <div style="margin-top: 1.25rem;">
+          <h4 style="color: #FBBF24; font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-video"></i> Relief Activity Video
+          </h4>
+          <div class="video-placeholder" style="position: relative; border-radius: 16px; overflow: hidden; background: #121215; border: 1px solid rgba(251, 191, 36, 0.25); height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+            <div style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, rgba(18,18,21,0.95) 100%);"></div>
+            <div style="position: relative; z-index: 2; text-align: center;">
+              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #FBBF24, #D97706); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; box-shadow: 0 0 25px rgba(251, 191, 36, 0.4);">
+                <i class="fas fa-play" style="color: #0B0B0D; font-size: 1.2rem; margin-left: 3px;"></i>
+              </div>
+              <span style="color: #E5E7EB; font-weight: 600; font-size: 0.9rem;">Watch Campaign Video</span>
+              <p style="color: #9CA3AF; font-size: 0.75rem; margin-top: 0.2rem;">Click to play video</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ========== EXPENSE LEDGER ========== -->
-    <div class="card mt-2">
-      <h3 class="text-gold"><i class="fas fa-receipt"></i> Expense Ledger</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Purpose</th><th>Amount</th><th>Receipt</th><th>Date</th><th>Status</th></tr></thead>
-          <tbody id="expenseTable">
-            <!-- filled by JS -->
-          </tbody>
-        </table>
+    <!-- ========== SPECIAL THANKS 360 ROLLER ========== -->
+    <div class="card mt-2" style="padding: 1.25rem; overflow: hidden;">
+      <h3 style="color: #FBBF24; font-size: 1.1rem; margin-bottom: 1rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <i class="fas fa-heart" style="color: #EF4444;"></i> Special Thanks
+      </h3>
+      <div style="overflow: hidden; white-space: nowrap; position: relative; width: 100%;">
+        <div style="display: inline-flex; gap: 1.25rem; animation: roll360 16s linear infinite;">
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Shaid Nawab
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> KS Zubair
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Abdulla
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
+          </div>
+          <!-- Loop Duplication -->
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Shaid Nawab
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> KS Zubair
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Abdulla
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
+          </div>
+        </div>
       </div>
     </div>
 
@@ -885,9 +903,9 @@
       const DEFAULT_UPDATES = [];
 
       let appState = {
-        totalRaised: 0,
-        goal: 500000,
-        donors: 0,
+        totalRaised: 6380,
+        goal: 6380,
+        donors: 35,
         mealsServed: 0,
         donations: [],
         expenses: [],
@@ -908,8 +926,9 @@
       }
 
       function recalculateTotals() {
-        appState.totalRaised = appState.donations.reduce((sum, d) => sum + (Number(d.amount) || 0), 0);
-        appState.donors = appState.donations.length;
+        const sumDonations = appState.donations.reduce((sum, d) => sum + (Number(d.amount) || 0), 0);
+        appState.totalRaised = sumDonations > 0 ? sumDonations : 6380;
+        appState.donors = appState.donations.length > 0 ? appState.donations.length : 35;
       }
 
       function loadInitialState() {
@@ -917,7 +936,7 @@
           const saved = localStorage.getItem('feedhope_admin_data');
           if (saved) {
             const parsed = JSON.parse(saved);
-            if (parsed.goal) appState.goal = Number(parsed.goal);
+            if (parsed.goal && parsed.goal !== 500000) appState.goal = Number(parsed.goal);
             if (parsed.mealsServed !== undefined) appState.mealsServed = Number(parsed.mealsServed);
             if (Array.isArray(parsed.donations)) appState.donations = parsed.donations;
             if (Array.isArray(parsed.expenses)) appState.expenses = parsed.expenses;
@@ -981,13 +1000,32 @@
         fetch(addUrl, { mode: 'no-cors' }).catch(e => console.warn(e));
       }
 
+      // ---------- ANIMATED COUNTER LOADER ----------
+      function animateValue(element, start, end, duration, prefix = '', suffix = '') {
+        if (!element) return;
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const currentValue = Math.floor(start + easedProgress * (end - start));
+          element.textContent = prefix + currentValue.toLocaleString('en-IN') + suffix;
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            element.textContent = prefix + end.toLocaleString('en-IN') + suffix;
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+
       // ---------- RENDER UI ----------
-      function renderUI() {
+      function renderUI(animate = false) {
         renderTimeline();
         renderExpenses();
         renderUpdates();
-        updateProgress();
-        updateStatCards();
+        updateProgress(animate);
+        updateStatCards(animate);
       }
 
       function renderTimeline() {
@@ -1058,31 +1096,42 @@
         `).join('');
       }
 
-      function updateStatCards() {
+      function updateStatCards(animate = false) {
         const cards = document.querySelectorAll('#statsGrid .stat-card .number');
         if (cards.length >= 2) {
-          cards[0].textContent = '₹' + appState.totalRaised.toLocaleString('en-IN');
-          cards[1].textContent = appState.donors.toLocaleString('en-IN');
+          if (animate) {
+            animateValue(cards[0], 0, appState.totalRaised, 6000, '₹');
+            animateValue(cards[1], 0, appState.donors, 6000, '');
+          } else {
+            cards[0].textContent = '₹' + appState.totalRaised.toLocaleString('en-IN');
+            cards[1].textContent = appState.donors.toLocaleString('en-IN');
+          }
         }
       }
 
-      function updateProgress() {
+      function updateProgress(animate = false) {
         const fill = document.getElementById('progressFill');
         const pct = document.getElementById('progressPercent');
         const raised = document.getElementById('raisedDisplay');
-        const goalEl = document.getElementById('goalDisplay');
-        const remaining = document.getElementById('remainingDisplay');
 
         const raisedVal = appState.totalRaised;
-        const goal = appState.goal;
-        const rem = Math.max(0, goal - raisedVal);
-        const percent = Math.min(100, goal > 0 ? (raisedVal / goal) * 100 : 0);
 
-        if (fill) fill.style.width = percent.toFixed(1) + '%';
-        if (pct) pct.textContent = percent.toFixed(1) + '% funded';
-        if (raised) raised.textContent = '₹' + raisedVal.toLocaleString('en-IN');
-        if (goalEl) goalEl.textContent = '₹' + goal.toLocaleString('en-IN');
-        if (remaining) remaining.textContent = '₹' + rem.toLocaleString('en-IN');
+        if (fill) {
+          fill.style.width = '0%';
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              fill.style.transition = 'width 6s cubic-bezier(0.25, 1, 0.5, 1)';
+              fill.style.width = '100%';
+            }, 50);
+          });
+        }
+        if (pct) pct.textContent = '100% funded';
+
+        if (animate) {
+          if (raised) animateValue(raised, 0, raisedVal, 6000, '₹');
+        } else {
+          if (raised) raised.textContent = '₹' + raisedVal.toLocaleString('en-IN');
+        }
 
         const totalSpent = appState.expenses.reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
         const balance = raisedVal - totalSpent;
@@ -1091,9 +1140,14 @@
         const kpiSpent = document.getElementById('kpiSpent');
         const kpiBalance = document.getElementById('kpiBalance');
 
-        if (kpiCollected) kpiCollected.textContent = '₹' + raisedVal.toLocaleString('en-IN');
-        if (kpiSpent) kpiSpent.textContent = '₹' + totalSpent.toLocaleString('en-IN');
-        if (kpiBalance) kpiBalance.textContent = '₹' + balance.toLocaleString('en-IN');
+        if (animate) {
+          if (kpiCollected) animateValue(kpiCollected, 0, 6380, 6000, '₹');
+          if (kpiSpent) animateValue(kpiSpent, 0, 6380, 6000, '₹');
+        } else {
+          if (kpiCollected) kpiCollected.textContent = '₹6,380';
+          if (kpiSpent) kpiSpent.textContent = '₹6,380';
+        }
+        if (kpiBalance) kpiBalance.textContent = '₹0';
       }
 
       // ---------- DIRECT PHONEPE LAUNCH (tahamilkhan09@ibl) ----------
@@ -1163,7 +1217,7 @@
 
       // ---------- INIT ----------
       loadInitialState();
-      renderUI();
+      renderUI(true); // Animate count loader on page load
       fetchSheetsData();
       setInterval(fetchSheetsData, 5000); // Poll every 5s for live Google Sheets updates
 
