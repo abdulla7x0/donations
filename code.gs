@@ -1,5 +1,5 @@
 /**
- * FeedHope - Google Sheets Backend (Google Apps Script)
+ * cjpfoodfundgurramkonda - Google Sheets Backend (Google Apps Script)
  * Copy and paste this code into Extensions -> Apps Script in your Google Sheet,
  * then Deploy as Web App (Execute as: Me, Access: Anyone).
  */
