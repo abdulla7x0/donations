@@ -800,20 +800,17 @@
           <img src="proof.jpeg" alt="Proof of Relief" style="width: 100%; height: auto; display: block; object-fit: contain;" />
         </div>
 
-        <!-- VIDEO PLACEHOLDER -->
+        <!-- VIDEO PLAYER -->
         <div style="margin-top: 1.25rem;">
           <h4 style="color: #FBBF24; font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <i class="fas fa-video"></i> Relief Activity Video
           </h4>
-          <div class="video-placeholder" style="position: relative; border-radius: 16px; overflow: hidden; background: #121215; border: 1px solid rgba(251, 191, 36, 0.25); height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
-            <div style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, rgba(18,18,21,0.95) 100%);"></div>
-            <div style="position: relative; z-index: 2; text-align: center;">
-              <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #FBBF24, #D97706); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; box-shadow: 0 0 25px rgba(251, 191, 36, 0.4);">
-                <i class="fas fa-play" style="color: #0B0B0D; font-size: 1.2rem; margin-left: 3px;"></i>
-              </div>
-              <span style="color: #E5E7EB; font-weight: 600; font-size: 0.9rem;">Watch Campaign Video</span>
-              <p style="color: #9CA3AF; font-size: 0.75rem; margin-top: 0.2rem;">Click to play video</p>
-            </div>
+          <div id="videoContainer" style="position: relative; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid rgba(251, 191, 36, 0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <video id="reliefVideo" style="width: 100%; height: auto; max-height: 440px; display: block; border-radius: 16px;" controls preload="auto" playsinline onplay="this.muted=false; this.volume=1.0;">
+              <source src="relief_video.mp4" type="video/mp4">
+              <source src="WhatsApp%20Video%202026-07-26%20at%207.59.49%20AM.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
@@ -833,10 +830,10 @@
             <span style="color: #FBBF24;">🌟</span> KS Zubair
           </div>
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-            <span style="color: #FBBF24;">🌟</span> Abdulla
+            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
           </div>
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
+            <span style="color: #FBBF24;">🌟</span> Sallu Bhai
           </div>
           <!-- Loop Duplication -->
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
@@ -846,10 +843,10 @@
             <span style="color: #FBBF24;">🌟</span> KS Zubair
           </div>
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-            <span style="color: #FBBF24;">🌟</span> Abdulla
+            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
           </div>
           <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.6rem 1.25rem; border-radius: 50px; color: #FFF; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-            <span style="color: #FBBF24;">🌟</span> Fayaz Khan
+            <span style="color: #FBBF24;">🌟</span> Sallu Bhai
           </div>
         </div>
       </div>
@@ -1296,6 +1293,32 @@
       window.closeDonationModal = function() {
         const modal = document.getElementById('donationModal');
         if (modal) modal.style.display = 'none';
+      };
+
+      const reliefVid = document.getElementById('reliefVideo');
+      if (reliefVid) {
+        reliefVid.muted = false;
+        reliefVid.volume = 1.0;
+        reliefVid.addEventListener('play', function() {
+          reliefVid.muted = false;
+          reliefVid.volume = 1.0;
+        });
+      }
+
+      window.playCampaignVideo = function() {
+        if (reliefVid) {
+          reliefVid.muted = false;
+          reliefVid.volume = 1.0;
+          reliefVid.play();
+        }
+      };
+
+      window.unmuteVideo = function() {
+        if (reliefVid) {
+          reliefVid.muted = false;
+          reliefVid.volume = 1.0;
+          reliefVid.play().catch(e => console.log('Playback error:', e));
+        }
       };
 
       // ---------- INIT ----------
